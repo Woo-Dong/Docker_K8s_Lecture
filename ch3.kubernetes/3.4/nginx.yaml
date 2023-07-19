@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-app-deploy
+spec:
+  # FILL HERE
+  template:
+    # FILL HERE
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx-img
+          imagePullPolicy: Never
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-app-service
+spec:
+  # FILL HERE
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      nodePort: 30005

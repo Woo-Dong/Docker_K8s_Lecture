@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app-deploy
+spec:
+  # FILL HERE
+  template:
+    # FILL HERE
+    spec:
+      containers:
+        - name: flask-container
+          image: flask-img
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-app-service
+spec:
+  type: ClusterIP
+  # FILL HERE
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-test
+  template:
+    metadata:
+      labels:
+        app: web-test
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx-img
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+
+        - name: express-container
+          image: express-img
+          imagePullPolicy: Never
+          # command: ["npm", "run"] # ENTRYPOINT
+          args: ["start:prod"] # CMD
+          ports:
+            - containerPort: 3000
+
+        - name: flask-container
+          image: flask-img
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-app-deploy
+spec:
+  # FILL HERE
+  template:
+    # FILL HERE
+    spec:
+      containers:
+        - name: express-container
+          image: express-img
+          imagePullPolicy: Never
+          # FILL HERE
+          ports:
+            - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: express-app-service
+spec:
+  type: ClusterIP
+  # FILL HERE
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000

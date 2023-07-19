@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  app:
+    container_name: app-container
+    build:
+      context: ./app
+    image: flask-app-img
+    ports:
+      - "5000:5000"
+    # volumes:
+    #   - ./app:/app
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_RUN_HOST=0.0.0.0
+      - REDIS_HOST=redis
+    entrypoint: ["flask", "run"]
+    # command: 
+    #   - flask
+    #   - run
+    depends_on:
+      - redis
+
+  redis: 
+    container_name: redis-container
+    image: "redis:alpine"
