@@ -15,5 +15,5 @@ spec:
         app: apply-nginx
     spec:
       containers:
-      - image: nginx
+      - image: nginx:alpine
         name: nginx

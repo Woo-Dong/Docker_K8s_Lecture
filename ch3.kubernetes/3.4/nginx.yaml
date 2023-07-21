@@ -3,9 +3,14 @@ kind: Deployment
 metadata:
   name: nginx-app-deploy
 spec:
-  # FILL HERE
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-app
   template:
-    # FILL HERE
+    metadata:
+      labels:
+        app: nginx-app
     spec:
       containers:
         - name: nginx-container
@@ -18,7 +23,9 @@ kind: Service
 metadata:
   name: nginx-app-service
 spec:
-  # FILL HERE
+  type: NodePort
+  selector:
+    app: nginx-app
   ports:
     - name: http
       port: 80

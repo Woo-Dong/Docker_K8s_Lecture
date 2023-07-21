@@ -3,9 +3,14 @@ kind: Deployment
 metadata:
   name: flask-app-deploy
 spec:
-  # FILL HERE
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flask-app
   template:
-    # FILL HERE
+    metadata:
+      labels:
+        app: flask-app
     spec:
       containers:
         - name: flask-container
@@ -21,7 +26,8 @@ metadata:
   name: flask-app-service
 spec:
   type: ClusterIP
-  # FILL HERE
+  selector:
+    app: flask-app
   ports:
     - protocol: TCP
       port: 5000

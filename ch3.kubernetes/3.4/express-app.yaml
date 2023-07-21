@@ -3,15 +3,20 @@ kind: Deployment
 metadata:
   name: express-app-deploy
 spec:
-  # FILL HERE
+  replicas: 3
+  selector:
+    matchLabels:
+      app: express-app
   template:
-    # FILL HERE
+    metadata:
+      labels:
+        app: express-app
     spec:
       containers:
         - name: express-container
           image: express-img
           imagePullPolicy: Never
-          # FILL HERE
+          args: ["start:prod"]
           ports:
             - containerPort: 3000
 
@@ -22,7 +27,8 @@ metadata:
   name: express-app-service
 spec:
   type: ClusterIP
-  # FILL HERE
+  selector:
+    app: express-app
   ports:
     - protocol: TCP
       port: 3000
